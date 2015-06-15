@@ -6,7 +6,7 @@ namespace SocketWebClient.Tests.Integration
 {
     public class SocketRequestRunnerTests
     {
-        private const string BaseUrl = "http://localhost:8080/test/";
+        private const string BaseUrl = "http://localhost:9001/";
         private const string ResponseContent = "<h1>content</h1>";
 
         private IRequestRunner runner;
@@ -33,18 +33,17 @@ namespace SocketWebClient.Tests.Integration
         [SetUp]
         public void Before_each_test()
         {
-            //runner = new SocketRequestRunner();
-            runner = new SystemHttpClientRequestRunner();
+            runner = new TcpSocketRequestRunner();
         }
 
         [Test]
-        public void Should_download_content()
+        public void Should_download_content_when_doing_a_get_request()
         {
             var request = new HttpRequest { Method = Method.GET, Url = new Uri(BaseUrl) };
 
             var response = runner.Execute(request);
 
-            Assert.That(response.Content, Is.EqualTo(ResponseContent));
+            Assert.That(response.Content, Is.StringEnding(ResponseContent));
         }
     }
 }

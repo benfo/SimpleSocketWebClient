@@ -27,6 +27,7 @@ namespace SocketWebClient
             }
             requestBuilder.AppendLine();
             requestBuilder.AppendLine("Connection: Close");
+            requestBuilder.AppendLine();
             return requestBuilder.ToString();
         }
     }

@@ -12,7 +12,7 @@ namespace SocketWebClient.Tests
         {
             string expected = "GET " + url + " HTTP/1.1\r\n" +
                                     "Host: " + host + "\r\n" +
-                                    "Connection: Close\r\n";
+                                    "Connection: Close\r\n\r\n";
 
             var builder = new SocketHttpRequestBuilder(Method.GET, new Uri(url));
 
