@@ -13,6 +13,8 @@ namespace SocketWebClient
 
         public HttpResponse Get(string url)
         {
+            if (url == null) throw new ArgumentNullException("url");
+
             var request = new HttpRequest
             {
                 Url = new Uri(url),

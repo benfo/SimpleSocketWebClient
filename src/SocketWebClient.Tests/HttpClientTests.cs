@@ -17,6 +17,12 @@ namespace SocketWebClient.Tests
         }
 
         [Test]
+        public void Get_should_thown_an_exception_for_a_null_url()
+        {
+            Assert.Throws<ArgumentNullException>(() => client.Get(null));
+        }
+
+        [Test]
         public void Should_return_content_when_making_a_get_request()
         {
             const string url = "http://www.test.com/";
