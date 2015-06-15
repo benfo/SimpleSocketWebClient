@@ -21,6 +21,10 @@ namespace SocketWebClient
             requestBuilder.AppendFormat("{0} {1} HTTP/1.1", Method, Url);
             requestBuilder.AppendLine();
             requestBuilder.AppendFormat("Host: {0}", Url.Host);
+            if (!Url.IsDefaultPort)
+            {
+                requestBuilder.AppendFormat(":{0}", Url.Port);
+            }
             requestBuilder.AppendLine();
             requestBuilder.AppendLine("Connection: Close");
             return requestBuilder.ToString();

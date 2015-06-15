@@ -6,13 +6,15 @@ namespace SocketWebClient.Tests
     public class SocketHttpRequestBuilderTests
     {
         [Test]
-        public void Should_build_a_request_with_the_given_method_and_url()
+        [TestCase("http://www.test.com:8080/page", "www.test.com:8080")]
+        [TestCase("http://www.test.com/page", "www.test.com")]
+        public void Should_build_a_request_with_the_given_method_and_url(string url, string host)
         {
-            const string expected = "GET http://www.test.com/page HTTP/1.1\r\n" +
-                                    "Host: www.test.com\r\n" +
+            string expected = "GET " + url + " HTTP/1.1\r\n" +
+                                    "Host: " + host + "\r\n" +
                                     "Connection: Close\r\n";
 
-            var builder = new SocketHttpRequestBuilder(Method.GET, new Uri("http://www.test.com/page"));
+            var builder = new SocketHttpRequestBuilder(Method.GET, new Uri(url));
 
             string result = builder.Build();
 
