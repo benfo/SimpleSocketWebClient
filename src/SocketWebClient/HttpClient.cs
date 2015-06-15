@@ -6,6 +6,11 @@ namespace SocketWebClient
     {
         private readonly IRequestRunner _requestRunner;
 
+        public HttpClient()
+            : this(new TcpSocketRequestRunner())
+        {
+        }
+
         public HttpClient(IRequestRunner requestRunner)
         {
             _requestRunner = requestRunner;
